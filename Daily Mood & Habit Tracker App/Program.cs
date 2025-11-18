@@ -17,7 +17,8 @@ internal class Program
     }
     public static void Exits()
     {
-
+        Console.WriteLine("Goodbye!");
+        Environment.Exit(0);
     }
     public static void Option(string option)
     {
@@ -60,7 +61,7 @@ internal class Program
     private static void Main(string[] args)
     {
         Console.WriteLine("---------------WELCOME TO--------------- \n ------Daily Mood & Habit Tracker------");
-        Displ
+        DisplayMenu();
     }
 }
 
