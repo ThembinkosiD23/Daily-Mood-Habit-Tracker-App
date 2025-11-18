@@ -67,8 +67,8 @@ internal class Program
 
 class DailyLog
 {
-    string mood { get; set; }
-    string exercise { get; set; }
-    string meditate { get; set; }
-    string hoursOfSleep { get; set; }
+    public string Mood { get; set; }
+    public string Exercise { get; set; }
+    public string Meditate { get; set; }
+    public string HoursOfSleep { get; set; }
 }
