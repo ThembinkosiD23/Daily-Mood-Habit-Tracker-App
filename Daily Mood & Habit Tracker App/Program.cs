@@ -22,6 +22,24 @@ internal class Program
     public void Option(string option)
     {
 
+        switch (option) {
+            case "1":
+                AddDailyLog();
+            break;
+            case "2":
+               ViewPastLogs();
+                break;
+            case "3":
+                AnalaysWeek();
+                break;
+            case "4":
+                   Exits();
+            break;
+            default:
+                Console.WriteLine("Invalid Input!");
+                DisplayMenu();
+                break;
+        }
     }
     public void DisplayMenu()
     {
@@ -31,6 +49,12 @@ internal class Program
         Console.WriteLine("3. Analyse My Week ");
         Console.WriteLine("4. Exits");
         string option = Console.ReadLine();
+        if (!String.IsNullOrEmpty(option))
+        {
+            Option(option);
+        }
+        else
+            Console.WriteLine("You didn't put any Option, Please select option from the above.");
 
     }
     private static void Main(string[] args)
