@@ -3,23 +3,23 @@
 internal class Program
 {
     List<DailyLog> DailyLogs = new List<DailyLog>();
-    public void AddDailyLog()
+    public static void AddDailyLog()
     {
 
     }
-     public void ViewPastLogs()
+     public static void ViewPastLogs()
     {
 
     }
-    public void AnalaysWeek()
+    public static void AnalyzeWeek()
     {
 
     }
-    public void Exits()
+    public static void Exits()
     {
 
     }
-    public void Option(string option)
+    public static void Option(string option)
     {
 
         switch (option) {
@@ -30,7 +30,7 @@ internal class Program
                ViewPastLogs();
                 break;
             case "3":
-                AnalaysWeek();
+                AnalyzeWeek();
                 break;
             case "4":
                    Exits();
@@ -41,7 +41,7 @@ internal class Program
                 break;
         }
     }
-    public void DisplayMenu()
+    public static void DisplayMenu()
     {
         Console.WriteLine("Please enter your choose: ");
         Console.WriteLine("1. Add the daily log. ");
@@ -60,13 +60,14 @@ internal class Program
     private static void Main(string[] args)
     {
         Console.WriteLine("---------------WELCOME TO--------------- \n ------Daily Mood & Habit Tracker------");
+        Displ
     }
 }
 
 class DailyLog
 {
-    public string mood;
-    public string exercise;
-    public string meditate;
-    public string hoursOfSleep;
+    string mood { get; set; }
+    string exercise { get; set; }
+    string meditate { get; set; }
+    string hoursOfSleep { get; set; }
 }
