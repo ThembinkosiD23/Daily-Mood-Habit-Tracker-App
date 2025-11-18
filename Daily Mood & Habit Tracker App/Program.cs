@@ -13,52 +13,57 @@ internal class Program
     {
 
     }
-    public static void AnalyzeWeek()
+    public static void AnalyseMyWeek()
     {
 
     }
-    public static void Exits()
+    public static void Exit()
     {
         Console.WriteLine("Goodbye!");
         Environment.Exit(0);
     }
     public static void Option(string option)
     {
-
-        switch (option) {
+        switch (option)
+        {
             case "1":
                 AddDailyLog();
-            break;
+                break;
             case "2":
-               ViewPastLogs();
+                ViewPastLogs();
                 break;
             case "3":
-                AnalyzeWeek();
+                AnalyseMyWeek();
                 break;
             case "4":
-                   Exits();
-            break;
+                Exit();
+                break;
             default:
                 Console.WriteLine("Invalid Input!");
-                DisplayMenu();
                 break;
         }
     }
     public static void DisplayMenu()
     {
-        Console.WriteLine("Please enter your choose: ");
-        Console.WriteLine("1. Add the daily log. ");
-        Console.WriteLine("2. View Past logs. ");
-        Console.WriteLine("3. Analyse My Week ");
-        Console.WriteLine("4. Exits");
-        string option = Console.ReadLine();
-        if (!String.IsNullOrEmpty(option))
+        while (true)
         {
-            Option(option);
-        }
-        else
-            Console.WriteLine("You didn't put any Option, Please select option from the above.");
+            Console.WriteLine("\nPlease enter your choice: ");
+            Console.WriteLine("1. Add the daily log");
+            Console.WriteLine("2. View Past logs");
+            Console.WriteLine("3. Analyse My Week");
+            Console.WriteLine("4. Exit");
 
+            string option = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(option))
+            {
+                Option(option);
+            }
+            else
+            {
+                Console.WriteLine("You didn't put any option. Please select from the menu.");
+            }
+        }
     }
     private static void Main(string[] args)
     {
