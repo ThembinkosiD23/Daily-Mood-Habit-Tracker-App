@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 internal class Program
+
 {
-    List<DailyLog> DailyLogs = new List<DailyLog>();
+    // static because your methods are static
+    static List<DailyLog> DailyLogs = new List<DailyLog>();
     public static void AddDailyLog()
     {
 
