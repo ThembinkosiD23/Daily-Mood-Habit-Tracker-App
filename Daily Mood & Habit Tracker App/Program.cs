@@ -44,7 +44,7 @@ internal class Program
         {
             using (StreamWriter writer = new StreamWriter(path, true))
             {
-                writer.WriteLine($"{today}: \n |{Mood}|{Exercise}|{Meditate}|{HoursOfSleep}");
+                writer.WriteLine($"{today}: \n |Mood: {Mood}|Exercise: {Exercise}|Meditate: {Meditate}|Hours Of Sleep: {HoursOfSleep}");
             }
         }
         Console.WriteLine($"\nLog saved for {today}");
@@ -53,8 +53,35 @@ internal class Program
 
     public static void ViewPastLogs()
     {
-      
+        //read the logs from the tex file and display them
+        string path = "C:\\Users\\ThembinkosiDladla\\OneDrive - Prosus-Naspers\\Desktop\\LEARN25\\C#\\Fundamentals\\Projects\\Daily Mood & Habit Tracker App\\Logs\\dailylogs.txt";
+
+        if (File.Exists(path))
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                string content = reader.ReadToEnd();
+                Console.WriteLine("\n=== Your Past Logs ===");
+
+                if (string.IsNullOrWhiteSpace(content))
+                {
+                    Console.WriteLine("No logs found.");
+                }
+                else
+                {
+                    Console.WriteLine(content);
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("File not found!");
+        }
+
+        Console.WriteLine("\nPress ENTER to return to the menu...");
+        Console.ReadLine();
     }
+
     public static void AnalyseMyWeek()
     {
        
