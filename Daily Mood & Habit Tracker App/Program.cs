@@ -84,8 +84,94 @@ internal class Program
 
     public static void AnalyseMyWeek()
     {
-       
+        Console.WriteLine("\n=== Weekly Mood Analysis ===");
+
+        string path = "C:\\Users\\ThembinkosiDladla\\OneDrive - Prosus-Naspers\\Desktop\\LEARN25\\C#\\Fundamentals\\Projects\\Daily Mood & Habit Tracker App\\Logs\\dailylogs.txt";
+
+        if (File.Exists(path))
+        {
+            // Read all lines from the log file and store them in an array lines
+            string[] lines = File.ReadAllLines(path);
+
+            // initialize the counters
+            int happyCount = 0;
+            int stressedCount = 0;
+            int exerciseYesCount = 0;
+            int meditateYesCount = 0;
+            int totalSleep = 0;
+            int logCount = 0;
+
+            // Loop through each log entry
+            foreach (string line in lines)
+            {
+                // Skip empty lines
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                // Splitting each log entry into parts
+                string[] parts = line.Split('|');
+
+                // Extract values by splitting on ':'
+                string mood = parts[1].Split(':')[1].Trim();
+                string exercise = parts[2].Split(':')[1].Trim();
+                string meditate = parts[3].Split(':')[1].Trim();
+                string hoursOfSleepString = parts[4].Split(':')[1].Trim();
+
+                // Convert HoursOfSleep to a number
+                int hours = int.Parse(hoursOfSleepString);
+
+                //count the stats
+                if (mood == "Happy") happyCount++;
+                if (mood == "Tired" || mood == "Stressed") stressedCount++;
+                if (exercise == "yes") exerciseYesCount++;
+                if (meditate == "yes") meditateYesCount++;
+                totalSleep += hours;
+                logCount++;
+            }
+
+            // Avoid divide by zero
+            if (logCount == 0)
+            {
+                Console.WriteLine("No logs available to analyse.");
+            }
+            else
+            {
+                // Calculate average sleep
+                double avgSleep = (double)totalSleep / logCount;
+
+                Console.WriteLine("\n=== RESULTS ===");
+                Console.WriteLine($"Total logs: {logCount}");
+                Console.WriteLine($"Happy days: {happyCount}");
+                Console.WriteLine($"Tired/Stressed days: {stressedCount}");
+                Console.WriteLine($"Exercise days: {exerciseYesCount}");
+                Console.WriteLine($"Meditation days: {meditateYesCount}");
+                Console.WriteLine($"Average sleep: {avgSleep:0.0} hours");
+
+                // ==== SIMPLE INSIGHT ====
+                Console.WriteLine("\n=== INSIGHT ===");
+                if (avgSleep < 6)
+                {
+                    Console.WriteLine("You are sleeping less than 6 hours on average. Try to get more rest!");
+                }
+                else
+                {
+                    Console.WriteLine("Good sleep! Keep it up.");
+                }
+
+                if (exerciseYesCount > stressedCount)
+                {
+                    Console.WriteLine("Exercising seems to improve your mood!");
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("File not found!");
+        }
+
+        Console.WriteLine("\nPress ENTER to return to the menu...");
+        Console.ReadLine();
     }
+
     public static void Exit()
     {
         Console.WriteLine("Goodbye!");
