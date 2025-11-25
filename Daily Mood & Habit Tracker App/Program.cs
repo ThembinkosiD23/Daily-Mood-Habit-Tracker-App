@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static System.Net.Mime.MediaTypeNames;
+using Daily_Mood___Habit_Tracker_App;
 
 internal class Program
 
@@ -44,7 +45,8 @@ internal class Program
         {
             using (StreamWriter writer = new StreamWriter(path, true))
             {
-                writer.WriteLine($"{today}: \n |Mood: {Mood}|Exercise: {Exercise}|Meditate: {Meditate}|Hours Of Sleep: {HoursOfSleep}");
+                writer.WriteLine($"{today}|Mood:{Mood}|Exercise:{Exercise}|Meditate:{Meditate}|HoursOfSleep:{HoursOfSleep}");
+
             }
         }
         Console.WriteLine($"\nLog saved for {today}");
@@ -77,9 +79,6 @@ internal class Program
         {
             Console.WriteLine("File not found!");
         }
-
-        Console.WriteLine("\nPress ENTER to return to the menu...");
-        Console.ReadLine();
     }
 
     public static void AnalyseMyWeek()
@@ -168,8 +167,7 @@ internal class Program
             Console.WriteLine("File not found!");
         }
 
-        Console.WriteLine("\nPress ENTER to return to the menu...");
-        Console.ReadLine();
+      
     }
 
     public static void Exit()
@@ -230,11 +228,3 @@ internal class Program
     }
 }
 
-class DailyLog
-{
-    public string Mood { get; set; }
-    public string Exercise { get; set; }
-    public string Meditate { get; set; }
-    public string HoursOfSleep { get; set; }
-    public DateTime logDate {  get; set; }
-}
