@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static System.Net.Mime.MediaTypeNames;
 
 internal class Program
 
@@ -7,15 +8,56 @@ internal class Program
     static List<DailyLog> DailyLogs = new List<DailyLog>();
     public static void AddDailyLog()
     {
+        DateTime today = DateTime.Now;
+        Console.WriteLine($"Add today's log. Date: {today}");
+
+        Console.WriteLine("How was your mood today? (Happy, Tired, Stressed, Relaxed, Excited): ");
+        string Mood = Console.ReadLine();
+
+        Console.WriteLine("Did you exercise today? (yes/no): ");
+        string Exercise = Console.ReadLine();
+
+        Console.WriteLine("Did you meditate today? (yes/no): ");
+        string Meditate = Console.ReadLine();
+
+        Console.WriteLine("How many hours of sleep did you get?: ");
+        string HoursOfSleep = Console.ReadLine();
+
+        // CREATE THE OBJECT
+        DailyLog log = new DailyLog();
+        log.Mood = Mood;
+        log.Exercise = Exercise;
+        log.Meditate = Meditate;
+        log.HoursOfSleep = HoursOfSleep;
+        log.logDate = today;
+
+        // ADD TO LIST
+        DailyLogs.Add(log);
+
+        // Save Logs to a Text File
+        string path = "C:\\Users\\ThembinkosiDladla\\OneDrive - Prosus-Naspers\\Desktop\\LEARN25\\C#\\Fundamentals\\Projects\\Daily Mood & Habit Tracker App\\Logs\\dailylogs.txt";
+        if (string.IsNullOrEmpty(path))
+        {
+            Console.WriteLine("INVALID PATH");
+        }
+        else
+        {
+            using (StreamWriter writer = new StreamWriter(path, true))
+            {
+                writer.WriteLine($"{today}: \n |{Mood}|{Exercise}|{Meditate}|{HoursOfSleep}");
+            }
+        }
+        Console.WriteLine($"\nLog saved for {today}");
 
     }
-     public static void ViewPastLogs()
-    {
 
+    public static void ViewPastLogs()
+    {
+      
     }
     public static void AnalyseMyWeek()
     {
-
+       
     }
     public static void Exit()
     {
@@ -63,7 +105,10 @@ internal class Program
             {
                 Console.WriteLine("You didn't put any option. Please select from the menu.");
             }
+            Console.WriteLine("Press ENTER to return to the menu...");
+            Console.ReadLine();
         }
+
     }
     private static void Main(string[] args)
     {
@@ -78,4 +123,5 @@ class DailyLog
     public string Exercise { get; set; }
     public string Meditate { get; set; }
     public string HoursOfSleep { get; set; }
+    public DateTime logDate {  get; set; }
 }
